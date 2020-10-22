@@ -62,6 +62,7 @@ public class Consumer {
         /*
          *  Register callback to execute on arrival of messages fetched from brokers.
          */
+        consumer.setNamesrvAddr("127.0.0.1:9876");
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 
             @Override

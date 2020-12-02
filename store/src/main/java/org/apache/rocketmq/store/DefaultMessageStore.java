@@ -1874,7 +1874,7 @@ public class DefaultMessageStore implements MessageStore {
     }
 
     class ReputMessageService extends ServiceThread {
-
+        //存储 comitLog 位置信息 到 consumerQueue
         private volatile long reputFromOffset = 0;
 
         public long getReputFromOffset() {
@@ -1935,6 +1935,8 @@ public class DefaultMessageStore implements MessageStore {
 
                             if (dispatchRequest.isSuccess()) {
                                 if (size > 0) {
+
+                                    //这里开始存储 putMessagePositionInfo
                                     DefaultMessageStore.this.doDispatch(dispatchRequest);
 
                                     if (BrokerRole.SLAVE != DefaultMessageStore.this.getMessageStoreConfig().getBrokerRole()
